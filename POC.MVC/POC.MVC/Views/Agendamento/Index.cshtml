@@ -1,0 +1,28 @@
+﻿@model POC.Aplicacao.Models.Agendamento.AgendamentoLocais
+
+@{
+    ViewBag.Title = "Agendamento de Doação";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="form-group col-md-4">
+        @Html.Label("Estado", "Estado")
+        @Html.DropDownList("Estado", new SelectList(Model.Estados, "ID", "Nome"), "Selecione", new { @class = "form-control" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.Label("Município", "Município")
+        @Html.DropDownList("Municipio", Enumerable.Empty<SelectListItem>(), "Selecione", new { @class = "form-control" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(m => m.IDLocalDoacao, "Local de Doação")
+        @Html.DropDownListFor(m => m.IDLocalDoacao, Enumerable.Empty<SelectListItem>(), "Selecione", new { @class = "form-control" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-right">
+        <a class="btn btn-success" href="@Url.Action("Horarios", "Agendamento", new { idLocalDoacao = 1 })">Continuar</a>
+    </div>
+</div>
