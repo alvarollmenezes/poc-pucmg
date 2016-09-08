@@ -50,8 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Agendamento\AgendamentoDoacao.cs" />
+    <Compile Include="Models\Doacao\Coleta.cs" />
+    <Compile Include="Models\Doacao\Exame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkServices\AgendamentoWorkService.cs" />
+    <Compile Include="WorkServices\DoacaoWorkService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\POC.Infra\POC.Infra.csproj">

@@ -12,6 +12,8 @@ namespace POC.Infra.Dados
         }
 
         public DbSet<Agendamento> Agendamentos { get; set; }
+        public DbSet<Coleta> Coletas { get; set; }
+        public DbSet<Exame> Exames { get; set; }
         public DbSet<Doador> Doadores { get; set; }
         public DbSet<LocalDoacao> LocaisDoacao { get; set; }
         public DbSet<Municipio> Municipios { get; set; }

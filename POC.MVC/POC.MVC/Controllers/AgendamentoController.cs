@@ -30,7 +30,6 @@ namespace POC.MVC.Controllers
             return Json(ws.ObterMunicipiosPorEstado(siglaEstado), JsonRequestBehavior.AllowGet);
         }
 
-
         [HttpGet]
         public ActionResult ObterLocaisDoacao(int idMunicipio)
         {

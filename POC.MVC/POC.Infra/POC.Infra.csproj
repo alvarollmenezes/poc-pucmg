@@ -74,8 +74,14 @@
     <Compile Include="Migrations\201609080348343_V6.Designer.cs">
       <DependentUpon>201609080348343_V6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609080428330_V7.cs" />
+    <Compile Include="Migrations\201609080428330_V7.Designer.cs">
+      <DependentUpon>201609080428330_V7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agendamento.cs" />
+    <Compile Include="Models\Coleta.cs" />
+    <Compile Include="Models\Exame.cs" />
     <Compile Include="Models\LocalDoacao.cs" />
     <Compile Include="Models\Municipio.cs" />
     <Compile Include="Models\Doador.cs" />
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609080348343_V6.resx">
       <DependentUpon>201609080348343_V6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609080428330_V7.resx">
+      <DependentUpon>201609080428330_V7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
