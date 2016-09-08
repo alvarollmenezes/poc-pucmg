@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POC.Infra.Models
 {
-    public class Municipio
+    //TODO: As informações do doador devem ser o mais completo possível
+    public class Doador
     {
         public int ID { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]
-        public string SiglaEstado { get; set; }
+        public string CPF { get; set; }
+        [Required]
+        public DateTime DataNascimento { get; set; }
     }
 }

@@ -9,3 +9,17 @@
     padding-right: 15px;
 }
 
+.form-control[data-val-required] {
+    border-left: 3px solid #a94442;
+}
+
+.input-validation-error {
+    background-color: #FCF4F3;
+    border-color: #a94442;
+}
+
+.field-validation-error {
+    color: #a94442;
+    line-height: 30px;
+    font-size: 85%;
+}

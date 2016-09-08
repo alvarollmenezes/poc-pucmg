@@ -1,4 +1,4 @@
-﻿@model POC.Aplicacao.Models.Agendamento.AgendamentoLocais
+﻿@model POC.Aplicacao.Models.Agendamento.AgendamentoDoacao
 
 @{
     ViewBag.Title = "Agendamento de Doação";
@@ -7,22 +7,88 @@
 <h2>@ViewBag.Title</h2>
 <hr />
 
-<div class="row">
-    <div class="form-group col-md-4">
-        @Html.Label("Estado", "Estado")
-        @Html.DropDownList("Estado", new SelectList(Model.Estados, "ID", "Nome"), "Selecione", new { @class = "form-control" })
-    </div>
-    <div class="form-group col-md-4">
-        @Html.Label("Município", "Município")
-        @Html.DropDownList("Municipio", Enumerable.Empty<SelectListItem>(), "Selecione", new { @class = "form-control" })
-    </div>
-    <div class="form-group col-md-4">
-        @Html.LabelFor(m => m.IDLocalDoacao, "Local de Doação")
-        @Html.DropDownListFor(m => m.IDLocalDoacao, Enumerable.Empty<SelectListItem>(), "Selecione", new { @class = "form-control" })
-    </div>
+<div class="alert alert-warning">
+    Esta é uma Prova de Conceito.<br />
+    As informações exibidas são apenas demonstrativas.<br />
+    Na situação real o doador estará autenticado e identificado pelo sistema através de um login e cadastro anteriores que contém informações completas sobre o doador.
 </div>
-<div class="row">
-    <div class="col-md-12 text-right">
-        <a class="btn btn-success" href="@Url.Action("Horarios", "Agendamento", new { idLocalDoacao = 1 })">Continuar</a>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.IDDoador)
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Informações do Doador
+        </div>
+        <div class="panel-body">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(m => m.NomeDoador, "Nome")
+                @Html.TextBoxFor(m => m.NomeDoador, new { @readonly = "readonly", @class = "form-control" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(m => m.CPFDoador, "CPF")
+                @Html.TextBoxFor(m => m.CPFDoador, new { @readonly = "readonly", @class = "form-control" })
+            </div>
+        </div>
     </div>
-</div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Local da doação
+        </div>
+        <div class="panel-body">
+            <div class="form-group col-md-4">
+                @Html.Label("Estado", "Estado")
+                @Html.DropDownList("Estado", new SelectList(Model.Estados, "ID", "Nome"), "Selecione...", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.Label("Municipio", "Município")
+                @Html.DropDownList("Municipio", Enumerable.Empty<SelectListItem>(), "Selecione...", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(m => m.IDLocalDoacao, "Local de Doação")
+                @Html.DropDownListFor(m => m.IDLocalDoacao, Enumerable.Empty<SelectListItem>(), "Selecione...", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Agendamento
+        </div>
+        <div class="panel-body">
+            <div class="form-group col-md-4">
+                @Html.Label("DiasDisponiveis", "Dias Disponíveis")
+                @Html.DropDownList("DiasDisponiveis", Enumerable.Empty<SelectListItem>(), "Selecione...", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(m => m.DataHora, "Horários Disponíveis")
+                @Html.DropDownListFor(m => m.DataHora, Enumerable.Empty<SelectListItem>(), "Selecione...", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-success" href="@Url.Action("Horarios", "Agendamento", new { idLocalDoacao = 1 })">Agendar Doação</button>
+            </div>
+        </div>
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(function () {
+            $('#Estado').preencherDropDownCascata('@Url.Action("ObterMunicipios")', $('#Municipio'),
+                '', "siglaEstado", "ID", "Nome", "Selecione um Estado...");
+
+            $('#Municipio').preencherDropDownCascata('@Url.Action("ObterLocaisDoacao")', $('#@Html.IdFor(m => m.IDLocalDoacao)'),
+                '', "idMunicipio", "ID", "Nome", "Selecione um Município...");
+
+            $('#@Html.IdFor(m => m.IDLocalDoacao)').preencherDropDownCascata('@Url.Action("ObterDias")', $('#DiasDisponiveis'),
+               '', "idLocalDoacao", "Valor", "Data", "Selecione um Local de Doação...");
+
+            $('#DiasDisponiveis').preencherDropDownCascata('@Url.Action("ObterHorarios")', $('#@Html.IdFor(m => m.DataHora)'),
+               '', "diaEscolhido", "Valor", "Hora", "Selecione um Dia Disponível...");
+        });
+    </script>
+
+}

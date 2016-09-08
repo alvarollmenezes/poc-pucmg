@@ -49,8 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Agendamento\AgendamentoHorarios.cs" />
-    <Compile Include="Models\Agendamento\AgendamentoLocais.cs" />
+    <Compile Include="Models\Agendamento\AgendamentoDoacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkServices\AgendamentoWorkService.cs" />
   </ItemGroup>

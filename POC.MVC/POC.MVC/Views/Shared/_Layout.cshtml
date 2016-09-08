@@ -35,8 +35,33 @@
         </footer>
     </div>
 
+    <div id="divLoading" style="display:none; margin: 0px; padding: 0px; position: fixed; right: 0px;
+    top: 0px; width: 100%; height: 100%; z-index: 30001;
+    ">
+        <p style="position: absolute; top: 30%; left: 45%; color: White;" id="">
+            <img src="~/Content/ring-alt (1).svg" />
+        </p>
+    </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/Scripts/preencherDropDownCascata.js")
+    
+    <script type="text/javascript">
+        $(document).ajaxStart(function () {
+            $("#divLoading").fadeIn();
+        });
+
+        $(document).ajaxStop(function () {
+            $("#divLoading").fadeOut();
+        });
+    </script>
+
     @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

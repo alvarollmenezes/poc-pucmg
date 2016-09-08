@@ -62,10 +62,23 @@
     <Compile Include="Migrations\201609060217137_V3.Designer.cs">
       <DependentUpon>201609060217137_V3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609080324042_V4.cs" />
+    <Compile Include="Migrations\201609080324042_V4.Designer.cs">
+      <DependentUpon>201609080324042_V4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609080346181_V5.cs" />
+    <Compile Include="Migrations\201609080346181_V5.Designer.cs">
+      <DependentUpon>201609080346181_V5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609080348343_V6.cs" />
+    <Compile Include="Migrations\201609080348343_V6.Designer.cs">
+      <DependentUpon>201609080348343_V6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agendamento.cs" />
     <Compile Include="Models\LocalDoacao.cs" />
     <Compile Include="Models\Municipio.cs" />
+    <Compile Include="Models\Doador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +94,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609060217137_V3.resx">
       <DependentUpon>201609060217137_V3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609080324042_V4.resx">
+      <DependentUpon>201609080324042_V4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609080346181_V5.resx">
+      <DependentUpon>201609080346181_V5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609080348343_V6.resx">
+      <DependentUpon>201609080348343_V6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

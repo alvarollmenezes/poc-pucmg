@@ -4,15 +4,28 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using POC.Infra.Models;
 
 namespace POC.Aplicacao.WorkServices
 {
     public class AgendamentoWorkService
     {
-        public AgendamentoLocais ObterTela()
+        public AgendamentoDoacao ObterTela()
         {
-            return new AgendamentoLocais
+            Doador doador;
+            using (var ctx = new POCContext())
             {
+                //TODO: Deveria ser buscado do usuário autenticado
+                doador = ctx.Doadores
+                            .Where(d => d.ID == 1)
+                            .Single();
+            }
+
+            return new AgendamentoDoacao
+            {
+                IDDoador = doador.ID,
+                NomeDoador = doador.Nome,
+                CPFDoador = doador.CPF,
                 Estados = ObterEstados()
             };
         }
@@ -70,21 +83,60 @@ namespace POC.Aplicacao.WorkServices
             }
         }
 
-        public List<DateTime> ObterHorariosDisponiveis(int idLocalDoacao)
+        public List<DateTime> ObterDiasDisponiveis(int idLocalDoacao)
         {
             var now = DateTime.Now;
-            //TODO: Deveria acessar o webservice do local de doação para buscar a lista de horários disponíveis
+            //TODO: Deveria acessar o webservice do local de doação para buscar a lista de dias e horários disponíveis
+            //Como não há webservices de verdade, faremos um mock com delay
+            System.Threading.Thread.Sleep(1200);
             var horarios = new List<DateTime>();
 
             for (int i = 0; i < 15; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 8; j++)
                 {
-                    horarios.Add(new DateTime(now.Year, now.Month, now.Day - 7 + i, new Random().Next(8, 16), 0, 0));
+                    horarios.Add(new DateTime(now.Year, now.Month, now.Day + 1 + i, j + 8, 0, 0));
+                    horarios.Add(new DateTime(now.Year, now.Month, now.Day + 1 + i, j + 8, 30, 0));
                 }
             }
 
             return horarios.OrderBy(h => h).ToList();
+        }
+
+        public List<DateTime> ObterHorariosDisponiveis(int idLocalDoacao, DateTime diaEscolhido)
+        {
+            var now = DateTime.Now;
+            //TODO: Deveria acessar o webservice do local de doação para buscar a lista de dias e horários disponíveis
+            //Como não há webservices de verdade, faremos um mock com delay
+            System.Threading.Thread.Sleep(1200);
+            var horarios = new List<DateTime>();
+
+            for (int i = 0; i < 15; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    horarios.Add(new DateTime(now.Year, now.Month, now.Day + 1 + i, j + 8, 0, 0));
+                    horarios.Add(new DateTime(now.Year, now.Month, now.Day + 1 + i, j + 8, 30, 0));
+                }
+            }
+
+            return horarios.OrderBy(h => h).ToList();
+        }
+
+        public void RegistrarAgendamento(AgendamentoDoacao dados)
+        {
+            using (var ctx = new POCContext())
+            {
+                var agendamento = new Agendamento
+                {
+                    DataHora = dados.DataHora,
+                    Doador = ctx.Doadores.Find(dados.IDDoador),
+                    LocalDoacao = ctx.LocaisDoacao.Find(dados.IDLocalDoacao)
+                };
+
+                ctx.Agendamentos.Add(agendamento);
+                ctx.SaveChanges();
+            }
         }
     }
 }
