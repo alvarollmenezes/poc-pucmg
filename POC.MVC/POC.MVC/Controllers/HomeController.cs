@@ -12,5 +12,10 @@ namespace POC.MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult Responsividade()
+        {
+            return View();
+        }
     }
 }

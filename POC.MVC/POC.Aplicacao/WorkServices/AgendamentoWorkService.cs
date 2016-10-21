@@ -95,8 +95,8 @@ namespace POC.Aplicacao.WorkServices
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    horarios.Add(new DateTime(now.Year, now.Month, now.Day + 1 + i, j + 8, 0, 0));
-                    horarios.Add(new DateTime(now.Year, now.Month, now.Day + 1 + i, j + 8, 30, 0));
+                    horarios.Add(new DateTime(now.Year, now.Month, now.Day, j + 8, 0, 0).AddDays(1 + i));
+                    horarios.Add(new DateTime(now.Year, now.Month, now.Day, j + 8, 30, 0).AddDays(1 + i));
                 }
             }
 
@@ -115,8 +115,8 @@ namespace POC.Aplicacao.WorkServices
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    horarios.Add(new DateTime(now.Year, now.Month, now.Day + 1 + i, j + 8, 0, 0));
-                    horarios.Add(new DateTime(now.Year, now.Month, now.Day + 1 + i, j + 8, 30, 0));
+                    horarios.Add(new DateTime(now.Year, now.Month, now.Day, j + 8, 0, 0).AddDays(1 + i));
+                    horarios.Add(new DateTime(now.Year, now.Month, now.Day, j + 8, 30, 0).AddDays(1 + i));
                 }
             }
 
